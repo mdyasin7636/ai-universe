@@ -11,8 +11,15 @@ const loadCards = () => {
 
 const displayCards = cards => {
     // console.log(cards);
-    toggleSpinner(true)
     const cardsContainer = document.getElementById('all-cards')
+    const showAll = document.getElementById('show-all')
+    if(cards.length > 6) {
+      cards = cards.slice(0,6);
+      showAll.classList.remove('d-none');
+    }
+    else{
+      showAll.classList.add('d-none');
+    }
     cards.forEach(card => {
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('col')
@@ -42,7 +49,6 @@ const displayCards = cards => {
     
         cardsContainer.appendChild(cardDiv)
     })
-    toggleSpinner(false)
 }
 
 const toggleSpinner = isLoading => {
