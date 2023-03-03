@@ -1,12 +1,17 @@
 const loadCards = () => {
     const url =`https://openapi.programming-hero.com/api/ai/tools`
+    toggleSpinner(true)
     fetch(url)
     .then(res => res.json())
-    .then(data => displayCards(data.data.tools))
+    .then(data => {
+        displayCards(data.data.tools)
+        toggleSpinner(false)
+    })
 }
 
 const displayCards = cards => {
-    console.log(cards);
+    // console.log(cards);
+    toggleSpinner(true)
     const cardsContainer = document.getElementById('all-cards')
     cards.forEach(card => {
         const cardDiv = document.createElement('div')
@@ -37,6 +42,18 @@ const displayCards = cards => {
     
         cardsContainer.appendChild(cardDiv)
     })
+    toggleSpinner(false)
 }
+
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader')
+    if(isLoading){
+        loaderSection.classList.remove('d-none')
+    }
+    else{
+        loaderSection.classList.add('d-none')
+    }
+}
+
 
 loadCards ()
