@@ -4,21 +4,17 @@ const loadCards = () => {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        displayCards(data.data.tools)
+        displayCards(data.data.tools.slice(0, 6))
         toggleSpinner(false)
     })
 }
 
 const displayCards = cards => {
-    // console.log(cards);
     const cardsContainer = document.getElementById('all-cards')
+    cardsContainer.innerHTML = "";
     const showAll = document.getElementById('show-all')
-    if(cards.length > 6) {
-      cards = cards.slice(0,6);
-      showAll.classList.remove('d-none');
-    }
-    else{
-      showAll.classList.add('d-none');
+    if (cards.length >= 6) {
+      showAll.classList.remove('d-none')
     }
     cards.forEach(card => {
         const cardDiv = document.createElement('div')
@@ -48,7 +44,8 @@ const displayCards = cards => {
         `;
     
         cardsContainer.appendChild(cardDiv)
-    })
+    });
+
 }
 
 const toggleSpinner = isLoading => {
@@ -61,5 +58,18 @@ const toggleSpinner = isLoading => {
     }
 }
 
+const showAllData = () => {
+  const url =`https://openapi.programming-hero.com/api/ai/tools`
+    toggleSpinner(true)
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        displayCards(data.data.tools)
+        toggleSpinner(false)
+        const showAll = document.getElementById('show-all')
+        showAll.classList.add('d-none')
+
+    })
+}
 
 loadCards ()
