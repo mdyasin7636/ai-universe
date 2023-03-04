@@ -26,8 +26,6 @@ const showAllData = () => {
 const displayCards = cards => {
     const cardsContainer = document.getElementById('all-cards')
     cardsContainer.innerHTML = "";
-    // const showAll = document.getElementById('show-all')
-    // showAll.classList.remove('d-none')
     cards.forEach(card => {
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('col')
