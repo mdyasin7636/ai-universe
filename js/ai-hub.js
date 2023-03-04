@@ -4,8 +4,21 @@ const loadCards = () => {
     fetch(url)
     .then(res => res.json())
     .then(data => {
-        displayCards(data.data.tools.slice(0, 6))
+      displayCards(data.data.tools.slice(0, 6))
         toggleSpinner(false)
+    })
+}
+
+const showAllData = () => {
+  const url =`https://openapi.programming-hero.com/api/ai/tools`
+    toggleSpinner(true)
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        displayCards(data.data.tools)
+        toggleSpinner(false)
+        const showAll = document.getElementById('show-all')
+        showAll.classList.add('d-none')
     })
 }
 
@@ -13,9 +26,7 @@ const displayCards = cards => {
     const cardsContainer = document.getElementById('all-cards')
     cardsContainer.innerHTML = "";
     const showAll = document.getElementById('show-all')
-    if (cards.length >= 6) {
-      showAll.classList.remove('d-none')
-    }
+    showAll.classList.remove('d-none')
     cards.forEach(card => {
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('col')
@@ -46,7 +57,12 @@ const displayCards = cards => {
         cardsContainer.appendChild(cardDiv)
     });
 
+    const shortByDate = document.getElementById('short-by-date').addEventListener('click', function(){
+      sortCardsByDate(cards)
+    })
+
 }
+
 
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader')
@@ -58,18 +74,9 @@ const toggleSpinner = isLoading => {
     }
 }
 
-const showAllData = () => {
-  const url =`https://openapi.programming-hero.com/api/ai/tools`
-    toggleSpinner(true)
-    fetch(url)
-    .then(res => res.json())
-    .then(data => {
-        displayCards(data.data.tools)
-        toggleSpinner(false)
-        const showAll = document.getElementById('show-all')
-        showAll.classList.add('d-none')
-
-    })
+const sortCardsByDate = cards => {
+  cards.sort((a, b) => new Date(b.published_in) - new Date(a.published_in))
+  displayCards(cards)
 }
 
 loadCards ()
