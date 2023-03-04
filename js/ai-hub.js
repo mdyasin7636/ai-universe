@@ -83,7 +83,7 @@ const showCardDetails = card =>{
                   <div class="row row-cols-3 m-3">
                     <div class="border rounded bg-white text-success p-4">
                       <p>${card.data.pricing[0].price ? card.data.pricing[0].price : 'Free of Cost'}</p>
-                      <p>${card.data.pricing[0].plan ? card.data.pricing[0].price : 'Free of Cost'}</p>
+                      <p>${card.data.pricing[0].plan ? card.data.pricing[0].plan : 'Free of Cost'}</p>
                     </div>
                     <div class="border rounded bg-white text-warning p-4">
                       <p>${card.data.pricing[1].price ? card.data.pricing[1].price : 'Free of Cost'}</p>
