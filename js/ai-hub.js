@@ -64,6 +64,7 @@ const displayCards = cards => {
 }
 
 const loadCardDetails = (id) =>{
+  console.log(id)
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
   fetch(url)
   .then(res => res.json())
@@ -89,5 +90,7 @@ const sortCardsByDate = cards => {
   cards.sort((a, b) => new Date(b.published_in) - new Date(a.published_in))
   displayCards(cards)
 }
+
+
 
 loadCards ()
