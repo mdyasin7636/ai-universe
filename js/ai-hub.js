@@ -47,7 +47,7 @@ const displayCards = cards => {
                   <p> <i class="fa-regular fa-calendar-days"></i> ${card.published_in}</p>
                 </div>
                 <div>
-                  <i class="fa-solid fa-arrow-right pt-3 text-danger"></i>
+                  <i class="fa-solid fa-arrow-right pt-3 text-danger" onclick="loadCardDetails()" data-bs-toggle="modal" data-bs-target="#cardDetailModal"></i>
                 </div>
               </div>
             </div>
@@ -61,6 +61,17 @@ const displayCards = cards => {
       sortCardsByDate(cards)
     })
 
+}
+
+const loadCardDetails = (id) =>{
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+  fetch(url)
+  .then(res => res.json())
+  .then(data => showCardDetails(data))
+}
+
+const showCardDetails = card =>{
+  console.log(card)
 }
 
 
