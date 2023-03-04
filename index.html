@@ -22,7 +22,7 @@
       <div id="all-cards" class="row row-cols-1 row-cols-md-3 g-4">
 
       </div>
-      <div id="show-all" class="text-center mt-5 mb-5 d-none">
+      <div id="show-all" class="text-center mt-5 mb-5">
         <div onclick="showAllData()" class="btn btn-danger">See More</div>
       </div>
     </section>
@@ -44,44 +44,8 @@
               <h1 class="modal-title fs-5" id="cardDetailModalLabel"></h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              <div class="row row-cols-1 row-cols-md-2">
-                <div class="border rounded bg-danger-subtle">
-                  <h4>ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to simulate human
-                    conversation.</h4>
-                  <div class="row row-cols-3 m-3">
-                    <p class="border rounded bg-white text-success p-4">$10/month Basic</p>
-                    <p class="border rounded bg-white text-warning p-4">$50/month Pro</p>
-                    <p class="border rounded bg-white text-danger p-4">Contact us Enterprise</p>
-                  </div>
-                  <div class="row row-cols-2 g-2">
-                    <div>
-                      <h5>Features</h5>
-                      <ul>
-                        <li>Customizable responses</li>
-                        <li>Multilingual support</li>
-                        <li>Seamless integration</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h5>Features</h5>
-                      <ul>
-                        <li>Customizable responses</li>
-                        <li>Multilingual support</li>
-                        <li>Seamless integration</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="border rounded text-center">
-                  <div>
-                    <img style="width: 25rem;" src="Rectangle 15.png" alt="">
-                    <p class="position-absolute border rounded p-2 bg-danger text-white top-0 end-0">94% accuracy</p>
-                  </div>
-                  <h4>Hi, how are you doing today?</h4>
-                  <p>I'm doing well, thank you for asking. How can I assist you today?</p>
-                </div>
-              </div>
+            <div id="modalCards" class="modal-body">
+              
             </div>
             <div class="modal-footer" style="border: none">
             </div>
