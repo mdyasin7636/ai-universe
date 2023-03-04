@@ -66,7 +66,7 @@ const displayCards = cards => {
 }
 
 const loadCardDetails = (id) =>{
-  console.log(id)
+  // console.log(id)
   const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
   fetch(url)
   .then(res => res.json())
@@ -74,44 +74,52 @@ const loadCardDetails = (id) =>{
 }
 
 const showCardDetails = card =>{
-  console.log(card);
+  // console.log(card);
   const modalCards = document.getElementById('modalCards')
   modalCards.innerHTML = `
   <div class="row row-cols-1 row-cols-md-2">
                 <div class="border rounded bg-danger-subtle">
-                  <h4>ChatGPT is an AI-powered chatbot platform that uses OpenAI's GPT technology to simulate human
-                    conversation.</h4>
+                  <h4>${card.data.description}</h4>
                   <div class="row row-cols-3 m-3">
-                    <p class="border rounded bg-white text-success p-4">$10/month Basic</p>
-                    <p class="border rounded bg-white text-warning p-4">$50/month Pro</p>
-                    <p class="border rounded bg-white text-danger p-4">Contact us Enterprise</p>
+                    <div class="border rounded bg-white text-success p-4">
+                      <p>${card.data.pricing[0].price ? card.data.pricing[0].price : 'Free of Cost'}</p>
+                      <p>${card.data.pricing[0].plan ? card.data.pricing[0].price : 'Free of Cost'}</p>
+                    </div>
+                    <div class="border rounded bg-white text-warning p-4">
+                      <p>${card.data.pricing[1].price ? card.data.pricing[1].price : 'Free of Cost'}</p>
+                      <p>${card.data.pricing[1].plan ? card.data.pricing[1].plan : 'Free of Cost'}</p>
+                    </div>
+                    <div class="border rounded bg-white text-danger p-4">
+                      <p>${card.data.pricing[2].price ? card.data.pricing[2].price : 'Free of Cost'}</p>
+                      <p>${card.data.pricing[2].plan ? card.data.pricing[2].plan : 'Free of Cost' }</p>
+                    </div>
                   </div>
                   <div class="row row-cols-2 g-2">
                     <div>
                       <h5>Features</h5>
                       <ul>
-                        <li>Customizable responses</li>
-                        <li>Multilingual support</li>
-                        <li>Seamless integration</li>
+                        <li>${card.data.features[1].feature_name ? card.data.features[1].feature_name : 'No Data Found'}</li>
+                        <li>${card.data.features[2].feature_name ? card.data.features[2].feature_name : 'No Data Found'}</li>
+                        <li>${card.data.features[3].feature_name ? card.data.features[3].feature_name : 'No Data Found'}</li>
                       </ul>
                     </div>
                     <div>
-                      <h5>Features</h5>
+                      <h5>Integrations</h5>
                       <ul>
-                        <li>Customizable responses</li>
-                        <li>Multilingual support</li>
-                        <li>Seamless integration</li>
+                        <li>${card.data.integrations[0] ? card.data.integrations[0] : 'No Data Found'}</li>
+                        <li>${card.data.integrations[1] ? card.data.integrations[1] : 'No Data Found'}</li>
+                        <li>${card.data.integrations[2] ? card.data.integrations[2] : 'No Data Found'}</li>
                       </ul>
                     </div>
                   </div>
                 </div>
                 <div class="border rounded text-center">
                   <div>
-                    <img style="width: 25rem;" src="Rectangle 15.png" alt="">
-                    <p class="position-absolute border rounded p-2 bg-danger text-white top-0 end-0">94% accuracy</p>
+                    <img style="width: 25rem;" src="${card.data.image_link[0]}" alt="">
+                    <p class="position-absolute border rounded p-2 bg-danger text-white top-0 end-0">${card.data.accuracy.score*100}% Accuracy</p>
                   </div>
-                  <h4>Hi, how are you doing today?</h4>
-                  <p>I'm doing well, thank you for asking. How can I assist you today?</p>
+                  <h4>${card.data.input_output_examples[0].input}</h4>
+                  <p>${card.data.input_output_examples[0].output}</p>
                 </div>
               </div>
   
